@@ -11,23 +11,24 @@ type Props = {
 export default function SubjectRow({ subject, onTogglePyq, onToggleRevision, onRemove }: Props) {
   const watched = subject.videos.filter(v => v.watched).length
   const total = subject.videos.length
+  const allDone = total > 0 && watched === total
 
   return (
-    <tr className="border-b border-zinc-800 hover:bg-zinc-900/50 group">
+    <tr className="border-b border-[#111] last:border-0 hover:bg-[#0a0a0a] group transition-colors">
       <td className="py-3 px-4">
         <Link
           to={`/subject/${subject.id}`}
-          className="text-white hover:text-zinc-300 transition-colors text-sm font-medium"
+          className="text-[13px] font-medium text-[#ccc] hover:text-white transition-colors"
         >
           {subject.name}
         </Link>
       </td>
-      <td className="py-3 px-4 text-sm text-zinc-400">
+      <td className="py-3 px-4">
         {total === 0 ? (
-          <span className="text-zinc-600">No videos</span>
+          <span className="text-[12px] text-[#333]">—</span>
         ) : (
-          <span className={watched === total ? 'text-zinc-300' : 'text-zinc-400'}>
-            {watched} / {total} watched
+          <span className={`text-[12px] font-mono tabular-nums ${allDone ? 'text-[#555]' : 'text-[#555]'}`}>
+            {watched}/{total}
           </span>
         )}
       </td>
@@ -36,7 +37,7 @@ export default function SubjectRow({ subject, onTogglePyq, onToggleRevision, onR
           type="checkbox"
           checked={subject.pyqDone}
           onChange={onTogglePyq}
-          className="accent-white w-4 h-4 cursor-pointer"
+          className="accent-white w-3.5 h-3.5 cursor-pointer"
         />
       </td>
       <td className="py-3 px-4">
@@ -44,13 +45,13 @@ export default function SubjectRow({ subject, onTogglePyq, onToggleRevision, onR
           type="checkbox"
           checked={subject.revisionDone}
           onChange={onToggleRevision}
-          className="accent-white w-4 h-4 cursor-pointer"
+          className="accent-white w-3.5 h-3.5 cursor-pointer"
         />
       </td>
       <td className="py-3 px-4">
         <button
           onClick={onRemove}
-          className="text-zinc-700 hover:text-zinc-400 opacity-0 group-hover:opacity-100 transition-all text-xs"
+          className="text-[#333] hover:text-[#666] opacity-0 group-hover:opacity-100 transition-all text-[11px]"
         >
           remove
         </button>

@@ -28,14 +28,19 @@ export default function AddSubjectModal({ onAdd, onClose }: Props) {
 
   return (
     <div
-      className="fixed inset-0 bg-black/60 flex items-center justify-center z-50"
+      className="fixed inset-0 bg-black/75 backdrop-blur-sm flex items-center justify-center z-50"
       onClick={onClose}
     >
       <div
-        className="bg-zinc-900 border border-zinc-800 rounded-lg p-6 w-full max-w-sm"
+        className="bg-[#0a0a0a] border border-[#262626] rounded-xl p-5 w-full max-w-sm shadow-2xl"
         onClick={e => e.stopPropagation()}
       >
-        <h2 className="text-white font-semibold mb-4">Add Subject</h2>
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-[13px] font-semibold text-[#ededed]">Add Subject</h2>
+          <button onClick={onClose} className="text-[#444] hover:text-[#888] transition-colors text-xl leading-none">
+            ×
+          </button>
+        </div>
         <form onSubmit={submit} className="flex flex-col gap-3">
           <input
             ref={inputRef}
@@ -43,19 +48,19 @@ export default function AddSubjectModal({ onAdd, onClose }: Props) {
             placeholder="Subject name"
             value={name}
             onChange={e => setName(e.target.value)}
-            className="bg-zinc-800 border border-zinc-700 rounded px-3 py-2 text-white text-sm placeholder-zinc-500 outline-none focus:border-zinc-500"
+            className="bg-black border border-[#262626] rounded-lg px-3 py-2 text-[13px] text-[#ededed] placeholder-[#333] outline-none focus:border-[#444] transition-colors"
           />
-          <div className="flex gap-2 justify-end">
+          <div className="flex gap-2 justify-end pt-1">
             <button
               type="button"
               onClick={onClose}
-              className="px-3 py-1.5 text-sm text-zinc-400 hover:text-white transition-colors"
+              className="h-8 px-3.5 text-[12px] text-[#555] hover:text-[#888] transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-3 py-1.5 text-sm bg-white text-black rounded hover:bg-zinc-100 transition-colors font-medium"
+              className="h-8 px-3.5 text-[12px] font-medium bg-white text-black rounded-md hover:bg-[#e6e6e6] transition-colors"
             >
               Add
             </button>

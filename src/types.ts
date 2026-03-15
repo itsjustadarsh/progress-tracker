@@ -1,7 +1,7 @@
 export type Video = {
   id: string;
   title: string;
-  durationMinutes: number;
+  durationSeconds: number;
   watched: boolean;
   addedAt: string;
 };
